@@ -1,0 +1,30 @@
+{
+  "image_threshold": 2.714172601699829,
+  "pixel_threshold": 2.3485515117645264,
+  "blur_sigma": 4.0,
+  "input_size": 224,
+  "coreset": 2048,
+  "feature_dim": 384,
+  "category": "metal_nut",
+  "image_auroc": 0.9882697947214076,
+  "image_recall_at_threshold": 0.946236559139785,
+  "image_fpr_at_threshold": 0.0,
+  "operating_points": [
+    {
+      "max_fpr": 0.0,
+      "recall": 0.946236559139785,
+      "threshold_ratio": 1.0186421985468284
+    },
+    {
+      "max_fpr": 0.05,
+      "recall": 0.978494623655914,
+      "threshold_ratio": 0.9513391745391475
+    },
+    {
+      "max_fpr": 0.1,
+      "recall": 0.978494623655914,
+      "threshold_ratio": 0.9513391745391475
+    }
+  ],
+  "pixel_auroc": 0.9795882179136711
+}

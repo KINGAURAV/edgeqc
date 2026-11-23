@@ -1,0 +1,30 @@
+{
+  "image_threshold": 2.4172308444976807,
+  "pixel_threshold": 2.0617835521698,
+  "blur_sigma": 4.0,
+  "input_size": 256,
+  "coreset": 4096,
+  "feature_dim": 384,
+  "category": "tile",
+  "image_auroc": 0.9848484848484849,
+  "image_recall_at_threshold": 0.75,
+  "image_fpr_at_threshold": 0.0,
+  "operating_points": [
+    {
+      "max_fpr": 0.0,
+      "recall": 0.8928571428571429,
+      "threshold_ratio": 0.9319656627181601
+    },
+    {
+      "max_fpr": 0.05,
+      "recall": 0.9047619047619048,
+      "threshold_ratio": 0.9210718520237654
+    },
+    {
+      "max_fpr": 0.1,
+      "recall": 0.9642857142857143,
+      "threshold_ratio": 0.8972966783089699
+    }
+  ],
+  "pixel_auroc": 0.9398178429496582
+}

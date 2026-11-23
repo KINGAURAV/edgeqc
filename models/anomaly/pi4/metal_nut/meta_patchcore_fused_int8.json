@@ -1,0 +1,17 @@
+{
+  "image_threshold": 2.7081313133239746,
+  "pixel_threshold": 2.350491523742676,
+  "blur_sigma": 4.0,
+  "input_size": 224,
+  "coreset": 2048,
+  "feature_dim": 384,
+  "category": "metal_nut",
+  "image_auroc": 0.9882697947214076,
+  "image_recall_at_threshold": 0.946236559139785,
+  "image_fpr_at_threshold": 0.0,
+  "pixel_auroc": 0.9795882179136711,
+  "calibrated_for": "patchcore_fused_int8.onnx",
+  "holdout_images": 22,
+  "image_threshold_smooth": 2.4661808609962463,
+  "smooth_holdout_images": 22
+}

@@ -1,0 +1,35 @@
+{
+  "feature_extractor.onnx": {
+    "image_auroc": 0.9848,
+    "recall@thr": 0.75,
+    "fpr@thr": 0.0,
+    "recall@0.9thr": 0.952,
+    "fpr@0.9thr": 0.061,
+    "p50_ms": 27.12,
+    "p95_ms": 32.2,
+    "size_mb": 11.1,
+    "image_threshold": 2.4169
+  },
+  "patchcore_fused.onnx": {
+    "image_auroc": 0.9848,
+    "recall@thr": 0.75,
+    "fpr@thr": 0.0,
+    "recall@0.9thr": 0.952,
+    "fpr@0.9thr": 0.061,
+    "p50_ms": 31.52,
+    "p95_ms": 45.47,
+    "size_mb": 17.4,
+    "image_threshold": 2.4169
+  },
+  "patchcore_fused_int8.onnx": {
+    "image_auroc": 0.9859,
+    "recall@thr": 0.774,
+    "fpr@thr": 0.0,
+    "recall@0.9thr": 0.976,
+    "fpr@0.9thr": 0.121,
+    "p50_ms": 28.17,
+    "p95_ms": 109.73,
+    "size_mb": 9.2,
+    "image_threshold": 2.3446
+  }
+}

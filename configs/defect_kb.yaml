@@ -1,0 +1,43 @@
+# Defect knowledge base: grounding notes injected into the Llama prompt and used
+# directly by the rule-based fallback advisor. Extend per product line.
+
+crazing:
+  description: Network of fine surface cracks.
+  causes: [excessive rolling reduction, improper cooling rate, high residual stress]
+  actions: [quarantine the coil section, check cooling-water flow and temperature, verify reduction schedule]
+inclusion:
+  description: Non-metallic particles embedded in the surface.
+  causes: [slag entrapment during casting, refractory wear, poor ladle practice]
+  actions: [mark and cut affected length, inform melt shop of heat number, inspect tundish refractory]
+patches:
+  description: Irregular discoloured or textured areas.
+  causes: [uneven pickling, oil or emulsion residue, uneven scale removal]
+  actions: [check pickling bath concentration, inspect roll coolant filters, re-inspect after cleaning]
+pitted_surface:
+  description: Small cavities or pits on the surface.
+  causes: [corrosion before rolling, scale pressed in and later removed, contaminated rolls]
+  actions: [hold for metallurgical review, inspect work-roll surface, check storage humidity]
+rolled-in_scale:
+  description: Oxide scale pressed into the surface during rolling.
+  causes: [insufficient descaling pressure, blocked descaler nozzles, high furnace temperature]
+  actions: [check descaler header pressure, clean or replace nozzles, verify furnace exit temperature]
+scratches:
+  description: Linear marks along or across the rolling direction.
+  causes: [foreign object on rolls or guides, misaligned guides, product dragging on table]
+  actions: [stop and inspect guides and rollers, remove debris, check line speed synchronisation]
+crack:
+  description: Discrete crack that may propagate under load.
+  causes: [thermal stress, material fatigue, forming beyond material limits]
+  actions: [reject part immediately, stop line if repeated, notify process engineer]
+anomaly_linear:
+  description: Unclassified elongated anomaly (possible crack or scratch).
+  causes: [unknown; needs human classification]
+  actions: [route part to manual inspection, capture close-up image, label for model retraining]
+anomaly_spot:
+  description: Unclassified small localised anomaly (possible pit, inclusion or dirt).
+  causes: [unknown; may be contamination on part or lens]
+  actions: [wipe camera lens and part, re-inspect, route to manual inspection if it persists]
+anomaly_area:
+  description: Unclassified large anomalous region (possible stain, patch or lighting issue).
+  causes: [unknown; check lighting uniformity first]
+  actions: [verify illumination and camera exposure, re-inspect, escalate if confirmed on part]

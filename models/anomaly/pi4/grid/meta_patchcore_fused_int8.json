@@ -1,0 +1,17 @@
+{
+  "image_threshold": 2.019287109375,
+  "pixel_threshold": 1.739836573600769,
+  "blur_sigma": 4.0,
+  "input_size": 256,
+  "coreset": 4096,
+  "feature_dim": 128,
+  "category": "grid",
+  "image_auroc": 0.9164578111946533,
+  "image_recall_at_threshold": 0.5964912280701754,
+  "image_fpr_at_threshold": 0.0,
+  "pixel_auroc": 0.9687270335180007,
+  "calibrated_for": "patchcore_fused_int8.onnx",
+  "holdout_images": 26,
+  "image_threshold_smooth": 1.8773609340190889,
+  "smooth_holdout_images": 26
+}

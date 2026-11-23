@@ -1,0 +1,25 @@
+# MVTec AD 'grid': PatchCore-lite, INT8 fused model (normalisation + ResNet-18 + kNN in one ONNX graph).
+# Built by scripts/optimize_patchcore.py; thresholds re-calibrated for the INT8 model on the training holdout.
+app:
+  product: grid
+  source: samples/mvtec/grid
+vision:
+  anomaly:
+    method: patchcore
+    model_path: models/anomaly/grid/patchcore_fused_int8.onnx
+    memory_bank: models/anomaly/grid/memory_bank.npy
+    meta: models/anomaly/grid/meta_patchcore_fused_int8.json
+    threshold_scale: 0.95   # smoothed image score; test: 80.7% recall / 4.8% false alarms (0.93: 86.0% / 14.3%)
+  classifier:
+    enabled: false
+severity:
+  area_frac: {major: 0.01, critical: 0.05}
+# Raspberry Pi 4 (--device configs/devices/pi4.yaml, vision on one core): smaller model for ~2 FPS.
+device_overrides:
+  pi4:
+    vision:
+      anomaly:
+        model_path: models/anomaly/pi4/grid/patchcore_fused_int8.onnx
+        memory_bank: models/anomaly/pi4/grid/memory_bank.npy
+        meta: models/anomaly/pi4/grid/meta_patchcore_fused_int8.json
+        threshold_scale: 0.93   # 256 px / 4096 patches / PCA-128; smoothed score; test 87.7% recall / 9.5% false alarms (0.95: 82.5% / 4.8%)

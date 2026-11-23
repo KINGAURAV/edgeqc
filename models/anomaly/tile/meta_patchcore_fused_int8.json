@@ -1,0 +1,17 @@
+{
+  "image_threshold": 2.344640016555786,
+  "pixel_threshold": 2.0315890312194824,
+  "blur_sigma": 4.0,
+  "input_size": 256,
+  "coreset": 4096,
+  "feature_dim": 384,
+  "category": "tile",
+  "image_auroc": 0.9848484848484849,
+  "image_recall_at_threshold": 0.75,
+  "image_fpr_at_threshold": 0.0,
+  "pixel_auroc": 0.9398178429496582,
+  "calibrated_for": "patchcore_fused_int8.onnx",
+  "holdout_images": 23,
+  "image_threshold_smooth": 2.2022807121276857,
+  "smooth_holdout_images": 23
+}

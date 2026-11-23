@@ -1,0 +1,41 @@
+{
+ "rubric": "1-5, rated by Claude (not a domain expert) against the knowledge base: 5 = cause, action and check all correct and specific; 4 = correct with one weak/vague line; 3 = one line wrong or meaningless; 2 = misleading; 1 = wrong",
+ "scores": {
+  "1": 5,
+  "2": 5,
+  "3": 5,
+  "4": 4,
+  "5": 4,
+  "6": 4,
+  "7": 5,
+  "8": 4,
+  "9": 3,
+  "10": 4,
+  "11": 5,
+  "12": 4,
+  "13": 4,
+  "14": 4,
+  "15": 3,
+  "16": 5,
+  "17": 4,
+  "18": 3,
+  "19": 5,
+  "20": 3
+ },
+ "mean": 4.15,
+ "notes": {
+  "4": "right cause/actions but never names 'inclusion' (guard rejects -> rule advice shown)",
+  "5": "action vague",
+  "6": "action slightly odd",
+  "8": "mixes two KB causes",
+  "9": "cause generic, action says 'excessive descaling' (KB: insufficient)",
+  "10": "cause restates description",
+  "12": "check line half-sense",
+  "13": "cause restates description",
+  "14": "cause restates description",
+  "15": "check line meaningless",
+  "17": "cause guesses a stain",
+  "18": "cause describes inclusion, worst defect is crazing",
+  "20": "'corrosion during rolling' (KB: before rolling), check vague"
+ }
+}

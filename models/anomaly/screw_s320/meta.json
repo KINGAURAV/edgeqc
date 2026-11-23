@@ -1,0 +1,30 @@
+{
+  "image_threshold": 2.3748984336853027,
+  "pixel_threshold": 2.050393581390381,
+  "blur_sigma": 4.0,
+  "input_size": 320,
+  "coreset": 4096,
+  "feature_dim": 384,
+  "category": "screw",
+  "image_auroc": 0.971920475507276,
+  "image_recall_at_threshold": 0.7563025210084033,
+  "image_fpr_at_threshold": 0.0,
+  "operating_points": [
+    {
+      "max_fpr": 0.0,
+      "recall": 0.8991596638655462,
+      "threshold_ratio": 0.9441085805647319
+    },
+    {
+      "max_fpr": 0.05,
+      "recall": 0.9327731092436975,
+      "threshold_ratio": 0.9203930992789312
+    },
+    {
+      "max_fpr": 0.1,
+      "recall": 0.9327731092436975,
+      "threshold_ratio": 0.9203930992789312
+    }
+  ],
+  "pixel_auroc": 0.9910727122887681
+}

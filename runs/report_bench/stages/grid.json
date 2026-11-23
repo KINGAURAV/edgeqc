@@ -1,0 +1,70 @@
+{
+ "pinned": {
+  "capture": {
+   "median": 29.3,
+   "p90": 30.4
+  },
+  "anomaly": {
+   "median": 433.6,
+   "p90": 448.3
+  },
+  "classifier": {
+   "median": 0.0,
+   "p90": 0.0
+  },
+  "fusion_severity": {
+   "median": 0.0,
+   "p90": 0.1
+  },
+  "render": {
+   "median": 42.2,
+   "p90": 44.5
+  },
+  "jpeg": {
+   "median": 6.2,
+   "p90": 6.4
+  },
+  "log": {
+   "median": 0.4,
+   "p90": 0.6
+  },
+  "total": {
+   "median": 512.5,
+   "p90": 528.7
+  }
+ },
+ "boost": {
+  "capture": {
+   "median": 29.3,
+   "p90": 30.3
+  },
+  "anomaly": {
+   "median": 149.6,
+   "p90": 201.0
+  },
+  "classifier": {
+   "median": 0.0,
+   "p90": 0.0
+  },
+  "fusion_severity": {
+   "median": 0.0,
+   "p90": 0.1
+  },
+  "render": {
+   "median": 42.3,
+   "p90": 43.5
+  },
+  "jpeg": {
+   "median": 6.0,
+   "p90": 6.2
+  },
+  "log": {
+   "median": 0.4,
+   "p90": 0.6
+  },
+  "total": {
+   "median": 227.9,
+   "p90": 280.2
+  }
+ }
+}

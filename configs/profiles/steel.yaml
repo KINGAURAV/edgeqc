@@ -1,0 +1,16 @@
+# Steel strip profile: YOLOv8n (NEU-DET) classifier + anomaly stage.
+app:
+  product: steel_strip
+  source: samples/neu_val     # 30 NEU-DET val images (5/class); full set: datasets/neu_yolo/images/val
+vision:
+  anomaly:
+    method: classical          # switch to patchcore once trained on defect-free steel images
+  classifier:
+    enabled: true
+    # INT8, 256 px (scripts/quantize_yolo.py). Same mAP50 as 320 px (0.707 vs 0.700, ONNX val) because NEU images
+    # are 200x200, and 130 -> 87 ms on the Pi 4. 320 px: yolov8n_neu_int8.onnx; FP32: yolov8n_neu.onnx
+    model_path: models/classifier/yolov8n_neu_256_int8.onnx
+    # Crazing / rolled-in scale are found but with low confidence (diffuse boxes). At the global 0.35, 54% of crazing
+    # and 15% of rolled-in images got no detection; with these overrides image-level accuracy is 86.7 -> 97.5% (val)
+    # and 87.9 -> 97.2% (train), wrong-class boxes unchanged (docs/RESULTS.md section 1).
+    class_conf_thresholds: {crazing: 0.15, rolled-in_scale: 0.20}

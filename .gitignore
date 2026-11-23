@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+.venv/
+.venv-et/
+*.egg-info/
+.pytest_cache/
+.DS_Store
+datasets/
+third_party/
+yolov8n.pt
+samples/synthetic/
+
+# run outputs: keep only the report measurements (logs + JSON), not the per-run databases / images
+runs/*
+!runs/report_bench/
+runs/report_bench/app_*/
+
+# model artefacts are large: rebuild with the scripts or download from the release (models/README.md)
+models/**/*.onnx
+models/**/*.hef
+models/**/*.pte
+models/**/*.npy
+models/**/*.pt
+models/**/*.pth
+models/llm/tokenizer.model
+models/llm/Llama-3.2-1B-Instruct/
+models/anomaly_sweep/

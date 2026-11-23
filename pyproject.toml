@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edgeqc"
+version = "0.1.0"
+description = "On-device industrial defect detection & QC assistant (vision on Arm CPU/Hailo, Llama advisor via ExecuTorch)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "opencv-python>=4.8",
+  "onnxruntime>=1.17",
+  "pyyaml>=6.0",
+  "fastapi>=0.110",
+  "uvicorn>=0.27",
+]
+
+[project.optional-dependencies]
+train = ["torch>=2.2", "torchvision>=0.17", "ultralytics>=8.2", "scikit-learn>=1.3", "tqdm>=4.66"]
+dev = ["pytest>=8.0", "httpx>=0.27"]
+
+[project.scripts]
+edgeqc = "edgeqc.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+edgeqc = ["ui/static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

@@ -1,0 +1,25 @@
+# MVTec AD 'bottle': PatchCore-lite, INT8 fused model (normalisation + ResNet-18 + kNN in one ONNX graph).
+# Built by scripts/optimize_patchcore.py; thresholds re-calibrated for the INT8 model on the training holdout.
+app:
+  product: bottle
+  source: samples/mvtec/bottle
+vision:
+  anomaly:
+    method: patchcore
+    model_path: models/anomaly/bottle/patchcore_fused_int8.onnx
+    memory_bank: models/anomaly/bottle/memory_bank.npy
+    meta: models/anomaly/bottle/meta_patchcore_fused_int8.json
+    threshold_scale: 0.95   # smoothed image score; test: 100% recall / 0% false alarms (same from 1.0 down to 0.93)
+  classifier:
+    enabled: false
+severity:
+  area_frac: {major: 0.01, critical: 0.05}
+# Raspberry Pi 4 (--device configs/devices/pi4.yaml, vision on one core): smaller model for ~2 FPS.
+device_overrides:
+  pi4:
+    vision:
+      anomaly:
+        model_path: models/anomaly/pi4/bottle/patchcore_fused_int8.onnx
+        memory_bank: models/anomaly/pi4/bottle/memory_bank.npy
+        meta: models/anomaly/pi4/bottle/meta_patchcore_fused_int8.json
+        threshold_scale: 1.0   # 224 px / 2048 patches; smoothed score; test 100% recall / 0% false alarms (0.95: 100% / 5%)

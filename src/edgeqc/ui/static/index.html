@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EdgeQC Operator Console</title>
+<style>
+  :root { --bg:#0f1216; --panel:#181d23; --line:#262d36; --text:#e6e9ee; --muted:#8b95a3;
+          --pass:#3fb950; --review:#e3b341; --reject:#f85149; --accent:#58a6ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+  header { display:flex; align-items:center; gap:16px; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:16px; margin:0; letter-spacing:.3px; }
+  .pill { padding:2px 8px; border-radius:999px; background:var(--panel); border:1px solid var(--line); color:var(--muted); font-size:12px; }
+  main { display:grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap:16px; padding:16px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; min-width:0; }
+  .panel h2 { margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:.8px; color:var(--muted); }
+  #stream { width:100%; border-radius:6px; background:#000; display:block; aspect-ratio:4/3; object-fit:contain; }
+  .kpis { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:12px; }
+  .kpi { background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:8px; }
+  .kpi b { display:block; font-size:20px; font-variant-numeric:tabular-nums; }
+  .kpi span { color:var(--muted); font-size:11px; }
+  .verdict { font-size:28px; font-weight:700; letter-spacing:1px; }
+  .PASS { color:var(--pass); } .REVIEW { color:var(--review); } .REJECT { color:var(--reject); }
+  .MINOR { color:var(--review); } .MAJOR { color:#ff8c42; } .CRITICAL { color:var(--reject); }
+  ul.defects { list-style:none; padding:0; margin:8px 0; }
+  ul.defects li { padding:6px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:8px; }
+  .advice { white-space:pre-wrap; background:var(--bg); border-left:3px solid var(--accent); padding:10px; border-radius:6px; min-height:64px; }
+  .muted { color:var(--muted); font-size:12px; }
+  button { background:var(--accent); color:#081018; border:0; border-radius:6px; padding:8px 12px; font-weight:600; cursor:pointer; }
+  button:disabled { opacity:.4; cursor:default; }
+  .tablewrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th, td { text-align:left; padding:6px 4px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th { color:var(--muted); font-weight:500; }
+  .full { grid-column:1 / -1; }
+</style>
+</head>
+<body>
+<header>
+  <h1>EdgeQC · Operator Console</h1>
+  <span class="pill" id="product">product: -</span>
+  <span class="pill" id="engines">engines: -</span>
+  <span class="pill">on-device · offline</span>
+</header>
+<main>
+  <section class="panel">
+    <h2>Live inspection</h2>
+    <img id="stream" src="/stream" alt="Live inspection stream">
+    <div class="kpis">
+      <div class="kpi"><b id="k-total">0</b><span>inspected</span></div>
+      <div class="kpi"><b id="k-pass" class="PASS">0</b><span>pass</span></div>
+      <div class="kpi"><b id="k-review" class="REVIEW">0</b><span>review</span></div>
+      <div class="kpi"><b id="k-reject" class="REJECT">0</b><span>reject</span></div>
+      <div class="kpi"><b id="k-fps">0</b><span>FPS</span></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Latest alert</h2>
+    <div id="a-verdict" class="verdict">-</div>
+    <div class="muted" id="a-meta">No alerts yet</div>
+    <ul class="defects" id="a-defects"></ul>
+    <h2 style="margin-top:14px">Recommendation</h2>
+    <div class="advice" id="a-advice">-</div>
+    <div class="muted" id="a-engine"></div>
+    <div style="margin-top:10px"><button id="ack" disabled>Acknowledge</button></div>
+  </section>
+
+  <section class="panel full">
+    <h2>Recent defects</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>#</th><th>Time</th><th>Verdict</th><th>Worst</th><th>Defects</th><th>Score</th><th>Log entry</th><th>Ack</th></tr></thead>
+        <tbody id="recent"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let alertId = null;
+
+async function poll() {
+  try {
+    const s = await (await fetch("/api/state")).json();
+    $("k-total").textContent = s.stats.total; $("k-pass").textContent = s.stats.PASS;
+    $("k-review").textContent = s.stats.REVIEW; $("k-reject").textContent = s.stats.REJECT;
+    $("k-fps").textContent = s.fps;
+    if (s.latest) $("product").textContent = "product: " + s.latest.product;
+    $("engines").textContent = `vision: ${s.engines.vision || "-"} · advisor: ${s.engines.advisor || "-"}`;
+    const a = s.alert;
+    if (a) {
+      alertId = a.inspection_id;
+      $("a-verdict").textContent = a.verdict; $("a-verdict").className = "verdict " + a.verdict;
+      $("a-meta").textContent = `#${a.inspection_id} · ${new Date(a.timestamp*1000).toLocaleTimeString()} · score ${a.image_score}`;
+      $("a-defects").innerHTML = a.defects.map(d =>
+        `<li><span>${esc(d.label)} <span class="muted">(${esc(d.source)})</span></span>
+         <span class="${d.severity}">${d.severity} · ${(d.area_frac*100).toFixed(1)}%</span></li>`).join("");
+      // advice_partial: the on-device LLM is still writing; the text streams in token by token
+      $("a-advice").textContent = a.advice ? a.advice + (a.advice_partial ? " ▍" : "")
+                                           : "Generating recommendation on-device…";
+      $("a-engine").textContent = !a.advice_engine ? ""
+        : a.advice_partial ? `${a.advice_engine} · writing… ${a.advice_latency_s}s`
+        : `by ${a.advice_engine} in ${a.advice_latency_s}s`;
+      $("ack").disabled = false;
+    }
+  } catch (e) { /* server restarting */ }
+}
+
+async function pollRecent() {
+  try {
+    const rows = await (await fetch("/api/recent?n=15")).json();
+    $("recent").innerHTML = rows.map(r => `<tr>
+      <td>${r.id}</td><td>${new Date(r.ts*1000).toLocaleTimeString()}</td>
+      <td class="${r.verdict}">${r.verdict}</td><td class="${r.worst_severity||""}">${r.worst_severity||"-"}</td>
+      <td>${esc(r.defects.map(d => d.label).join(", "))}</td><td>${(r.image_score||0).toFixed(2)}</td>
+      <td title="${esc(r.advice)}">${esc((r.log_entry || (r.advice||"").split("\n")[0]).slice(0,90))}</td><td>${r.acknowledged_by ? "✓" : ""}</td></tr>`).join("");
+  } catch (e) {}
+}
+
+$("ack").onclick = async () => {
+  if (alertId == null) return;
+  await fetch(`/api/ack/${alertId}`, {method: "POST"});
+  $("ack").disabled = true; pollRecent();
+};
+
+setInterval(poll, 700); setInterval(pollRecent, 2500); poll(); pollRecent();
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+ "mvtec": {
+  "bottle": {
+   "auroc": 1.0,
+   "recall": 1.0,
+   "false_alarm": 0.0,
+   "defective": 63,
+   "good": 20
+  },
+  "metal_nut": {
+   "auroc": 0.993,
+   "recall": 0.989,
+   "false_alarm": 0.091,
+   "defective": 93,
+   "good": 22
+  },
+  "tile": {
+   "auroc": 0.999,
+   "recall": 1.0,
+   "false_alarm": 0.091,
+   "defective": 84,
+   "good": 33
+  },
+  "grid": {
+   "auroc": 0.954,
+   "recall": 0.877,
+   "false_alarm": 0.095,
+   "defective": 57,
+   "good": 21
+  },
+  "screw": {
+   "auroc": 0.981,
+   "recall": 0.966,
+   "false_alarm": 0.073,
+   "defective": 119,
+   "good": 41
+  }
+ }
+}

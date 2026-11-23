@@ -1,0 +1,89 @@
+# EdgeQC default configuration. Override with --config or CLI flags.
+
+app:
+  product: steel_strip
+  # camera index (e.g. 0), "picamera", a video file, or an image directory
+  source: samples/synthetic
+  loop_source: true          # loop video / image folder (virtual conveyor)
+  camera_size: [640, 480]    # Pi camera stream size (ISP-scaled; models run at 256-320 px)
+  target_fps: 10
+  idle_target_fps: null      # frame-rate cap while vision borrows the LLM's cores (vision.boost_threads); null = target_fps
+  data_dir: runs             # SQLite DB + saved images
+  save_images: non_pass      # all | non_pass | none
+
+vision:
+  backend: onnx              # onnx (Arm CPU) | hailo (AI HAT+ NPU via HailoRT)
+  num_threads: 4
+  ort_spinning: false        # ONNX Runtime busy-wait; off so the co-running Llama runner keeps its CPU time
+  cpu_affinity: null         # e.g. [0] on a Pi 4 (see configs/devices/pi4.yaml); null = all cores
+  boost_threads: 0           # >num_threads: extra ONNX sessions with this many threads, used while the LLM is idle
+  anomaly:
+    method: classical        # classical (no model needed) | patchcore
+    input_size: 256
+    # patchcore artefacts (produced by scripts/train_anomaly.py)
+    model_path: models/anomaly/feature_extractor.onnx   # .hef when backend=hailo
+    memory_bank: models/anomaly/memory_bank.npy
+    meta: models/anomaly/meta.json
+    image_gate: 1.0          # patchcore: report defects only if image score >= this (1.0 = calibrated threshold; null = off)
+    threshold_scale: 1.0     # <1.0 = more sensitive (fewer misses, more false alarms); 0.9 = ~92-100% recall at <=10% FPR on 4/5 MVTec categories
+    # classical detector tuning
+    classical_z_threshold: 7.0
+    classical_bg_kernel: 31
+    min_region_area_frac: 0.0008
+  classifier:
+    enabled: false           # set true once models/classifier/*.onnx exists
+    model_path: models/classifier/yolov8n_neu.onnx       # .hef when backend=hailo
+    input_size: 320
+    conf_threshold: 0.35
+    class_conf_thresholds: {}  # per-class overrides of conf_threshold, e.g. {crazing: 0.15}
+    iou_threshold: 0.45
+    labels: [crazing, inclusion, patches, pitted_surface, rolled-in_scale, scratches]
+  fusion:
+    iou_match: 0.1
+
+severity:
+  area_frac:                 # defect bbox area / image area
+    major: 0.02
+    critical: 0.08
+  score:                     # anomaly strength relative to calibrated threshold (1.0 = threshold)
+    major: 2.0
+    critical: 3.5
+  class_criticality:         # base severity per defect class
+    crazing: MAJOR
+    inclusion: MAJOR
+    patches: MINOR
+    pitted_surface: MAJOR
+    rolled-in_scale: MINOR
+    scratches: MINOR
+    crack: CRITICAL
+    anomaly_linear: MAJOR    # unknown elongated anomaly: possible crack/scratch
+    anomaly_spot: MINOR
+    anomaly_area: MINOR
+  default: MINOR
+
+advisor:
+  engine: executorch         # executorch | rule
+  fallback_to_rule: true     # use rule advisor if ExecuTorch artefacts are missing or fail
+  runner_path: third_party/executorch/cmake-out/examples/models/llama/llama_main
+  server_path: third_party/executorch/cmake-out/examples/models/llama/llama_server   # resident model (preferred)
+  model_path: models/llm/llama3_2_1b_instruct_8da4w.pte
+  tokenizer_path: models/llm/tokenizer.model
+  max_new_tokens: 140        # reply cap; .pte is exported with a 1024-token context (prompt incl. one worked example is ~300-450 tokens)
+  temperature: 0.0          # greedy: same findings → same advice (reproducible QC log)
+  cpu_threads: 4
+  nice: 10                   # run the LLM below the vision loop's CPU priority (vision stays real-time)
+  cpu_affinity: null         # e.g. [1, 2, 3] on a Pi 4; null = all cores
+  timeout_s: 180             # per reply line from the LLM; Pi 4 under vision load needs the headroom
+  cooldown_s: 15             # retry the LLM for a signature this long after a rule-based fallback
+  pregenerate: true          # while the line is idle, generate advice for each (class, severity) once (cached on disk)
+  pregenerate_idle_s: 20     # "idle" = no advice request for this long
+  knowledge_base: configs/defect_kb.yaml
+
+ui:
+  web: true
+  host: 0.0.0.0
+  port: 8000
+  window: false              # OpenCV preview window (desktop only)
+  show_heatmap: true
+  display_max_side: 640      # overlay drawn at <= this size (dashboard + saved evidence image); 0 = full frame
+  jpeg_quality: 80

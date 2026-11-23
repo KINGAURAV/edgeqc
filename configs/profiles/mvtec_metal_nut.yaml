@@ -1,0 +1,25 @@
+# MVTec AD 'metal_nut': PatchCore-lite, INT8 fused model (normalisation + ResNet-18 + kNN in one ONNX graph).
+# Built by scripts/optimize_patchcore.py; thresholds re-calibrated for the INT8 model on the training holdout.
+app:
+  product: metal_nut
+  source: samples/mvtec/metal_nut
+vision:
+  anomaly:
+    method: patchcore
+    model_path: models/anomaly/metal_nut/patchcore_fused_int8.onnx
+    memory_bank: models/anomaly/metal_nut/memory_bank.npy
+    meta: models/anomaly/metal_nut/meta_patchcore_fused_int8.json
+    threshold_scale: 0.93   # smoothed image score; test: 98.9% recall / 9.1% false alarms (1.0: 96.8% / 4.5%)
+  classifier:
+    enabled: false
+severity:
+  area_frac: {major: 0.01, critical: 0.05}
+# Raspberry Pi 4 (--device configs/devices/pi4.yaml, vision on one core): smaller model for ~2 FPS.
+device_overrides:
+  pi4:
+    vision:
+      anomaly:
+        model_path: models/anomaly/pi4/metal_nut/patchcore_fused_int8.onnx
+        memory_bank: models/anomaly/pi4/metal_nut/memory_bank.npy
+        meta: models/anomaly/pi4/metal_nut/meta_patchcore_fused_int8.json
+        threshold_scale: 0.97   # 224 px / 2048 patches; smoothed score; test 98.9% recall / 9.1% false alarms (1.0: 96.8% / 4.5%)

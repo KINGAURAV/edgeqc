@@ -1,0 +1,17 @@
+{
+  "image_threshold": 2.430433988571167,
+  "pixel_threshold": 2.0570125579833984,
+  "blur_sigma": 4.0,
+  "input_size": 320,
+  "coreset": 4096,
+  "feature_dim": 384,
+  "category": "screw",
+  "image_auroc": 0.971920475507276,
+  "image_recall_at_threshold": 0.7563025210084033,
+  "image_fpr_at_threshold": 0.0,
+  "pixel_auroc": 0.9910727122887681,
+  "calibrated_for": "patchcore_fused_int8.onnx",
+  "holdout_images": 32,
+  "image_threshold_smooth": 2.223196828365326,
+  "smooth_holdout_images": 32
+}

@@ -1,0 +1,879 @@
+{
+ "summary": {
+  "rule": {
+   "format": 20,
+   "grounded": 20,
+   "names_type": 20,
+   "cause_kb": 20,
+   "action_kb": 20,
+   "no_foreign": 20,
+   "no_numbers": 20,
+   "verdict_ok": 20,
+   "n": 20
+  },
+  "warm_up_s": 36.62410578795243,
+  "llm": {
+   "format": 20,
+   "grounded": 17,
+   "names_type": 15,
+   "cause_kb": 14,
+   "action_kb": 20,
+   "no_foreign": 20,
+   "no_numbers": 20,
+   "verdict_ok": 20,
+   "n": 20,
+   "latency_median_s": 25.7,
+   "latency_max_s": 36.08,
+   "ttft_median_s": 11.556,
+   "ttft_min_s": 5.9,
+   "ttft_max_s": 23.35,
+   "gen_tokens_mean": 49.45,
+   "decode_tok_per_s": 3.79
+  }
+ },
+ "cases": [
+  {
+   "case": 1,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "crazing/CRITICAL"
+   ],
+   "rule": {
+    "text": "Cause: crazing (CRITICAL), likely excessive rolling reduction.\nAction: quarantine the coil section.\nCheck: check cooling-water flow and temperature.\nLog: REJECT - CRITICAL crazing at center, anomaly score 4.10.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: High residual stress leading to crazing.\nAction: Isolate the affected coil section and investigate the root cause of the crazing.\nCheck: Check the cooling-water flow and temperature to ensure proper cooling.\nLog: REJECT - CRITICAL crazing at center, anomaly score 4.10.",
+    "latency_s": 20.91,
+    "stats": {
+     "prompt_tokens": 376,
+     "generated_tokens": 42,
+     "ttft_ms": 10684,
+     "total_ms": 20905,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 2,
+   "product": "steel_strip",
+   "verdict": "REVIEW",
+   "defects": [
+    "crazing/MINOR"
+   ],
+   "rule": {
+    "text": "Cause: crazing (MINOR), likely excessive rolling reduction.\nAction: quarantine the coil section.\nCheck: check cooling-water flow and temperature.\nLog: REVIEW - MINOR crazing at bottom-left, anomaly score 1.40.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: High residual stress may be causing the crazing.\nAction: Isolate the affected coil section and verify the cooling process.\nCheck: Check the cooling-water flow and temperature to ensure proper cooling.\nLog: REVIEW - MINOR crazing at bottom-left, anomaly score 1.40.",
+    "latency_s": 15.61,
+    "stats": {
+     "prompt_tokens": 377,
+     "generated_tokens": 40,
+     "ttft_ms": 5900,
+     "total_ms": 15612,
+     "cached_prefix_tokens": 311
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 3,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "inclusion/MAJOR"
+   ],
+   "rule": {
+    "text": "Cause: inclusion (MAJOR), likely slag entrapment during casting.\nAction: mark and cut affected length.\nCheck: inform melt shop of heat number.\nLog: REJECT - MAJOR inclusion at top-center, anomaly score 2.90.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Possible slag entrapment during casting, leading to non-metallic inclusion particles.\nAction: Mark the affected area and cut it out, then inform the melt shop of the heat number.\nCheck: Check the ladle for proper practice and inspect the tundish refractory for wear.\nLog: REJECT - MAJOR inclusion at top-center, anomaly score 2.90.",
+    "latency_s": 25.95,
+    "stats": {
+     "prompt_tokens": 386,
+     "generated_tokens": 59,
+     "ttft_ms": 11218,
+     "total_ms": 25952,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 4,
+   "product": "steel_strip",
+   "verdict": "REVIEW",
+   "defects": [
+    "inclusion/MINOR"
+   ],
+   "rule": {
+    "text": "Cause: inclusion (MINOR), likely slag entrapment during casting.\nAction: mark and cut affected length.\nCheck: inform melt shop of heat number.\nLog: REVIEW - MINOR inclusion at bottom-right, anomaly score 1.20.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Possible slag entrapment during casting, leading to non-metallic particles.\nAction: Mark the affected area and cut it off to prevent further damage.\nCheck: Check the ladle for proper use and inform the melt shop of the heat number.\nLog: REVIEW - MINOR inclusion at bottom-right, anomaly score 1.20.",
+    "latency_s": 18.06,
+    "stats": {
+     "prompt_tokens": 386,
+     "generated_tokens": 51,
+     "ttft_ms": 5935,
+     "total_ms": 18058,
+     "cached_prefix_tokens": 321
+    },
+    "format": true,
+    "grounded": false,
+    "names_type": false,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 5,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "patches/MAJOR"
+   ],
+   "rule": {
+    "text": "Cause: patches (MAJOR), likely uneven pickling.\nAction: check pickling bath concentration.\nCheck: inspect roll coolant filters.\nLog: REJECT - MAJOR patches at middle-left, anomaly score 3.30.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Unusual patching on the steel strip surface, likely due to uneven pickling and oil residue.\nAction: Inspect the steel strip for any signs of patching, and verify the patch is not a normal manufacturing variation.\nCheck: Check pickling bath concentration, roll coolant filters, and re-inspect after cleaning.\nLog: REJECT - MAJOR patches at middle-left, anomaly score 3.30.",
+    "latency_s": 27.28,
+    "stats": {
+     "prompt_tokens": 382,
+     "generated_tokens": 66,
+     "ttft_ms": 11222,
+     "total_ms": 27276,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": false,
+    "names_type": false,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 6,
+   "product": "steel_strip",
+   "verdict": "REVIEW",
+   "defects": [
+    "patches/MINOR"
+   ],
+   "rule": {
+    "text": "Cause: patches (MINOR), likely uneven pickling.\nAction: check pickling bath concentration.\nCheck: inspect roll coolant filters.\nLog: REVIEW - MINOR patches at top-right, anomaly score 1.50.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Possible uneven scale removal causing a patch on the surface.\nAction: Inspect the part for scale removal and re-inspect after cleaning.\nCheck: Check pickling bath concentration and roll coolant filters.\nLog: REVIEW - MINOR patches at top-right, anomaly score 1.50.",
+    "latency_s": 16.47,
+    "stats": {
+     "prompt_tokens": 380,
+     "generated_tokens": 41,
+     "ttft_ms": 6207,
+     "total_ms": 16465,
+     "cached_prefix_tokens": 316
+    },
+    "format": true,
+    "grounded": false,
+    "names_type": false,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 7,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "pitted_surface/MAJOR"
+   ],
+   "rule": {
+    "text": "Cause: pitted_surface (MAJOR), likely corrosion before rolling.\nAction: hold for metallurgical review.\nCheck: inspect work-roll surface.\nLog: REJECT - MAJOR pitted_surface at center, anomaly score 3.00.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Pitted surface is a sign of corrosion that occurred before rolling, which is a major defect.\nAction: Reject the steel strip immediately.\nCheck: Check the rolled surface for any signs of corrosion or scale, and also inspect the storage area for any signs of moisture.\nLog: REJECT - MAJOR pitted_surface at center, anomaly score 3.00.",
+    "latency_s": 25.25,
+    "stats": {
+     "prompt_tokens": 381,
+     "generated_tokens": 55,
+     "ttft_ms": 11556,
+     "total_ms": 25250,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 8,
+   "product": "steel_strip",
+   "verdict": "REVIEW",
+   "defects": [
+    "pitted_surface/MINOR"
+   ],
+   "rule": {
+    "text": "Cause: pitted_surface (MINOR), likely corrosion before rolling.\nAction: hold for metallurgical review.\nCheck: inspect work-roll surface.\nLog: REVIEW - MINOR pitted_surface at bottom-left, anomaly score 1.30.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Pitted surface likely due to corrosion or scale buildup on the work roll.\nAction: Hold the part for metallurgical review and confirm the pitted surface visually.\nCheck: Check the work roll surface for any signs of corrosion or scale buildup.\nLog: REVIEW - MINOR pitted_surface at bottom-left, anomaly score 1.30.",
+    "latency_s": 19.12,
+    "stats": {
+     "prompt_tokens": 382,
+     "generated_tokens": 50,
+     "ttft_ms": 6524,
+     "total_ms": 19117,
+     "cached_prefix_tokens": 316
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 9,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "rolled-in_scale/MAJOR"
+   ],
+   "rule": {
+    "text": "Cause: rolled-in_scale (MAJOR), likely insufficient descaling pressure.\nAction: check descaler header pressure.\nCheck: clean or replace nozzles.\nLog: REJECT - MAJOR rolled-in_scale at center, anomaly score 3.60.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Likely oxide scale formation during the rolling process.\nAction: Inspect the rolled-in scale for any signs of excessive descaling or blockage of the descaling nozzles.\nCheck: Check descaler header pressure, clean or replace nozzles, and verify furnace exit temperature.\nLog: REJECT - MAJOR rolled-in_scale at center, anomaly score 3.60.",
+    "latency_s": 27.79,
+    "stats": {
+     "prompt_tokens": 388,
+     "generated_tokens": 58,
+     "ttft_ms": 12934,
+     "total_ms": 27793,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": false,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 10,
+   "product": "steel_strip",
+   "verdict": "REVIEW",
+   "defects": [
+    "rolled-in_scale/MINOR"
+   ],
+   "rule": {
+    "text": "Cause: rolled-in_scale (MINOR), likely insufficient descaling pressure.\nAction: check descaler header pressure.\nCheck: clean or replace nozzles.\nLog: REVIEW - MINOR rolled-in_scale at bottom-right, anomaly score 1.20.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Likely oxide scale pressing into the surface during rolling.\nAction: Inspect the roll surface for signs of oxide scale and verify the roll's operation.\nCheck: Check descaler header pressure and verify furnace exit temperature.\nLog: REVIEW - MINOR rolled-in_scale at bottom-right, anomaly score 1.20.",
+    "latency_s": 18.67,
+    "stats": {
+     "prompt_tokens": 389,
+     "generated_tokens": 44,
+     "ttft_ms": 7096,
+     "total_ms": 18670,
+     "cached_prefix_tokens": 322
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": false,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 11,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "scratches/MAJOR"
+   ],
+   "rule": {
+    "text": "Cause: scratches (MAJOR), likely foreign object on rolls or guides.\nAction: stop and inspect guides and rollers.\nCheck: remove debris.\nLog: REJECT - MAJOR scratches at top-left, anomaly score 2.70.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Scratches are likely a result of foreign objects on the rolls or guides.\nAction: Inspect the rolls and guides for any signs of damage or misalignment.\nCheck: Check line speed synchronisation to ensure that the rollers are properly aligned.\nLog: REJECT - MAJOR scratches at top-left, anomaly score 2.70.",
+    "latency_s": 25.85,
+    "stats": {
+     "prompt_tokens": 383,
+     "generated_tokens": 50,
+     "ttft_ms": 12969,
+     "total_ms": 25849,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 12,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "scratches/CRITICAL"
+   ],
+   "rule": {
+    "text": "Cause: scratches (CRITICAL), likely foreign object on rolls or guides.\nAction: stop and inspect guides and rollers.\nCheck: remove debris.\nLog: REJECT - CRITICAL scratches at center, anomaly score 4.40.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Scratches are likely a result of foreign objects on the rolls or guides.\nAction: Inspect the rolls and guides for any signs of damage or misalignment.\nCheck: Check line speed synchronisation to ensure it is properly aligned.\nLog: REJECT - CRITICAL scratches at center, anomaly score 4.40.",
+    "latency_s": 19.22,
+    "stats": {
+     "prompt_tokens": 382,
+     "generated_tokens": 48,
+     "ttft_ms": 6813,
+     "total_ms": 19218,
+     "cached_prefix_tokens": 317
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 13,
+   "product": "metal_nut",
+   "verdict": "REJECT",
+   "defects": [
+    "crack/CRITICAL"
+   ],
+   "rule": {
+    "text": "Cause: crack (CRITICAL), likely thermal stress.\nAction: reject part immediately.\nCheck: stop line if repeated.\nLog: REJECT - CRITICAL crack at center, anomaly score 5.20.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: The crack is a discrete, potentially propagating crack that may cause the part to fail under load.\nAction: Reject the part immediately and stop the line if the crack is repeated.\nCheck: Check the part for thermal stress, material fatigue, and forming beyond material limits.\nLog: REJECT - CRITICAL crack at center, anomaly score 5.20.",
+    "latency_s": 26.82,
+    "stats": {
+     "prompt_tokens": 375,
+     "generated_tokens": 56,
+     "ttft_ms": 12035,
+     "total_ms": 26817,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": false,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 14,
+   "product": "bottle",
+   "verdict": "REJECT",
+   "defects": [
+    "crack/CRITICAL"
+   ],
+   "rule": {
+    "text": "Cause: crack (CRITICAL), likely thermal stress.\nAction: reject part immediately.\nCheck: stop line if repeated.\nLog: REJECT - CRITICAL crack at top-center, anomaly score 3.80.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: The crack is a discrete and potentially propagating crack that may cause the bottle to fail under load.\nAction: Reject the bottle immediately and stop the line if the crack is repeated.\nCheck: Check the part for any signs of thermal stress, material fatigue, or forming beyond material limits.\nLog: REJECT - CRITICAL crack at top-center, anomaly score 3.80.",
+    "latency_s": 22.66,
+    "stats": {
+     "prompt_tokens": 374,
+     "generated_tokens": 59,
+     "ttft_ms": 6781,
+     "total_ms": 22665,
+     "cached_prefix_tokens": 309
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": false,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 15,
+   "product": "screw",
+   "verdict": "REJECT",
+   "defects": [
+    "anomaly_linear/MAJOR"
+   ],
+   "rule": {
+    "text": "Cause: anomaly_linear (MAJOR), likely unknown; needs human classification.\nAction: route part to manual inspection.\nCheck: capture close-up image.\nLog: REJECT - MAJOR anomaly_linear at middle-left, anomaly score 2.20.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Unclassified anomaly may indicate a possible crack or scratch.\nAction: Route the screw to manual inspection and capture a close-up image for further analysis.\nCheck: Check the anomaly's severity and the part's location to ensure the anomaly is not a minor or low-severity anomaly.\nLog: REJECT - MAJOR anomaly_linear at middle-left, anomaly score 2.20.",
+    "latency_s": 28.93,
+    "stats": {
+     "prompt_tokens": 380,
+     "generated_tokens": 58,
+     "ttft_ms": 13342,
+     "total_ms": 28928,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": false,
+    "cause_kb": false,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 16,
+   "product": "bottle",
+   "verdict": "REVIEW",
+   "defects": [
+    "anomaly_spot/MINOR"
+   ],
+   "rule": {
+    "text": "Cause: anomaly_spot (MINOR), likely unknown; may be contamination on part or lens.\nAction: wipe camera lens and part.\nCheck: re-inspect.\nLog: REVIEW - MINOR anomaly_spot at center, anomaly score 1.30.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Unclassified anomaly spot may indicate contamination or inclusion.\nAction: Wipe camera lens and part, re-inspect, and route to manual inspection if it persists.\nCheck: Check anomaly spot for re-occurrence.\nLog: REVIEW - MINOR anomaly_spot at center, anomaly score 1.30.",
+    "latency_s": 25.7,
+    "stats": {
+     "prompt_tokens": 385,
+     "generated_tokens": 46,
+     "ttft_ms": 13587,
+     "total_ms": 25702,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 17,
+   "product": "tile",
+   "verdict": "REJECT",
+   "defects": [
+    "anomaly_area/MAJOR"
+   ],
+   "rule": {
+    "text": "Cause: anomaly_area (MAJOR), likely unknown; check lighting uniformity first.\nAction: verify illumination and camera exposure.\nCheck: re-inspect.\nLog: REJECT - MAJOR anomaly_area at middle-left, anomaly score 2.60.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Possible stain or patch in the anomaly area.\nAction: Verify lighting uniformity and re-inspect the anomaly area.\nCheck: Check lighting uniformity and camera exposure.\nLog: REJECT - MAJOR anomaly_area at middle-left, anomaly score 2.60.",
+    "latency_s": 22.99,
+    "stats": {
+     "prompt_tokens": 385,
+     "generated_tokens": 35,
+     "ttft_ms": 14109,
+     "total_ms": 22991,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": false,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 18,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "crazing/CRITICAL",
+    "inclusion/MAJOR"
+   ],
+   "rule": {
+    "text": "Cause: crazing (CRITICAL), likely excessive rolling reduction.\nAction: quarantine the coil section.\nCheck: check cooling-water flow and temperature.\nLog: REJECT - CRITICAL crazing at middle-left (+1 more), anomaly score 4.00.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: High levels of slag and refractory particles embedded in the surface.\nAction: Quarantine the coil section and inspect tundish refractory for inclusion.\nCheck: Check for excessive rolling and reduction schedule.\nLog: REJECT - CRITICAL crazing at middle-left (+1 more), anomaly score 4.00.",
+    "latency_s": 35.03,
+    "stats": {
+     "prompt_tokens": 462,
+     "generated_tokens": 42,
+     "ttft_ms": 23350,
+     "total_ms": 35034,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": false,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 19,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "scratches/MAJOR",
+    "anomaly_spot/MINOR"
+   ],
+   "rule": {
+    "text": "Cause: scratches (MAJOR), likely foreign object on rolls or guides.\nAction: stop and inspect guides and rollers.\nCheck: remove debris.\nLog: REJECT - MAJOR scratches at bottom-center (+1 more), anomaly score 2.80.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Scratches on the rolling direction are likely due to foreign objects on the rolls or guides.\nAction: Inspect the rolls and guides for any foreign objects and misaligned guides.\nCheck: Check line speed synchronisation.\nLog: REJECT - MAJOR scratches at bottom-center (+1 more), anomaly score 2.80.",
+    "latency_s": 36.08,
+    "stats": {
+     "prompt_tokens": 470,
+     "generated_tokens": 45,
+     "ttft_ms": 23301,
+     "total_ms": 36080,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  },
+  {
+   "case": 20,
+   "product": "steel_strip",
+   "verdict": "REJECT",
+   "defects": [
+    "pitted_surface/MAJOR",
+    "patches/MINOR"
+   ],
+   "rule": {
+    "text": "Cause: pitted_surface (MAJOR), likely corrosion before rolling.\nAction: hold for metallurgical review.\nCheck: inspect work-roll surface.\nLog: REJECT - MAJOR pitted_surface at middle-left (+1 more), anomaly score 3.10.",
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   },
+   "llm": {
+    "text": "Cause: Pitted surface is likely due to corrosion during the rolling process.\nAction: Hold the part for metallurgical review and confirm the pitted surface visually.\nCheck: Check the pitted surface for any other anomalies.\nLog: REJECT - MAJOR pitted_surface at middle-left (+1 more), anomaly score 3.10.",
+    "latency_s": 35.2,
+    "stats": {
+     "prompt_tokens": 463,
+     "generated_tokens": 44,
+     "ttft_ms": 22876,
+     "total_ms": 35203,
+     "cached_prefix_tokens": 262
+    },
+    "format": true,
+    "grounded": true,
+    "names_type": true,
+    "cause_kb": true,
+    "action_kb": true,
+    "no_foreign": true,
+    "no_numbers": true,
+    "verdict_ok": true,
+    "_foreign": [],
+    "_numbers": []
+   }
+  }
+ ]
+}

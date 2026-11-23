@@ -1,0 +1,18 @@
+{
+ "samples": 361,
+ "peak_pss_mb": 1047.5,
+ "peak_rss_mb": 1058.5,
+ "peak_by_name": {
+  "python": {
+   "pss_mb": 149.2,
+   "rss_mb": 157.9
+  },
+  "llama_server": {
+   "pss_mb": 898.4,
+   "rss_mb": 900.6
+  }
+ },
+ "min_mem_available_mb": 1593.0,
+ "max_sys_swap_used_mb": 4.9,
+ "max_temp_c": 85.698
+}

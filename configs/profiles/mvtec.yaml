@@ -1,0 +1,15 @@
+# MVTec AD profile: PatchCore-lite anomaly detection for one category (default: bottle).
+# Train first: python scripts/train_anomaly.py --category-dir datasets/mvtec/bottle --out models/anomaly/bottle
+app:
+  product: bottle
+  source: datasets/mvtec/bottle/test
+vision:
+  anomaly:
+    method: patchcore
+    model_path: models/anomaly/bottle/feature_extractor.onnx
+    memory_bank: models/anomaly/bottle/memory_bank.npy
+    meta: models/anomaly/bottle/meta.json
+  classifier:
+    enabled: false
+severity:
+  area_frac: {major: 0.01, critical: 0.05}

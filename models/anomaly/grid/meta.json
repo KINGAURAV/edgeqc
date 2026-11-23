@@ -1,0 +1,30 @@
+{
+  "image_threshold": 2.275322914123535,
+  "pixel_threshold": 1.921481728553772,
+  "blur_sigma": 4.0,
+  "input_size": 256,
+  "coreset": 4096,
+  "feature_dim": 384,
+  "category": "grid",
+  "image_auroc": 0.8813700918964077,
+  "image_recall_at_threshold": 0.5087719298245614,
+  "image_fpr_at_threshold": 0.0,
+  "operating_points": [
+    {
+      "max_fpr": 0.0,
+      "recall": 0.543859649122807,
+      "threshold_ratio": 0.9984893218305098
+    },
+    {
+      "max_fpr": 0.05,
+      "recall": 0.631578947368421,
+      "threshold_ratio": 0.9887953931703138
+    },
+    {
+      "max_fpr": 0.1,
+      "recall": 0.7719298245614035,
+      "threshold_ratio": 0.956122537511804
+    }
+  ],
+  "pixel_auroc": 0.9658479877487275
+}

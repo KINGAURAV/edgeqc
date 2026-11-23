@@ -1,0 +1,30 @@
+{
+  "image_threshold": 1.8918064832687378,
+  "pixel_threshold": 1.5950957536697388,
+  "blur_sigma": 4.0,
+  "input_size": 224,
+  "coreset": 2048,
+  "feature_dim": 384,
+  "category": "bottle",
+  "image_auroc": 1.0,
+  "image_recall_at_threshold": 1.0,
+  "image_fpr_at_threshold": 0.0,
+  "operating_points": [
+    {
+      "max_fpr": 0.0,
+      "recall": 1.0,
+      "threshold_ratio": 1.0905933934284386
+    },
+    {
+      "max_fpr": 0.05,
+      "recall": 1.0,
+      "threshold_ratio": 1.0905933934284386
+    },
+    {
+      "max_fpr": 0.1,
+      "recall": 1.0,
+      "threshold_ratio": 1.0905933934284386
+    }
+  ],
+  "pixel_auroc": 0.9807483456042712
+}

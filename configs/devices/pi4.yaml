@@ -1,0 +1,24 @@
+# Raspberry Pi 4 Model B (4 x Cortex-A72 @ 1.5 GHz, 4 GB). Use on top of any product profile:
+#   python -m edgeqc.app --config configs/profiles/steel.yaml --device configs/devices/pi4.yaml
+#
+# Vision and the Llama advisor share 4 slow cores. Both use all-core thread pools, and when they overlap each
+# stalls the other (XNNPACK's per-op barrier waits for a preempted thread). Measured on the Pi 4, steel profile
+# (docs/RESULTS.md section 5): unpinned 4+4 threads -> 3 FPS and 74-90 s advice; pinned as below -> 2 FPS steady
+# and 38-77 s advice with no fallbacks. A heatsink + fan matters as much as this split (it throttles at 80 C).
+#
+# device.name selects each profile's device_overrides.pi4 block: the MVTec profiles switch to smaller PatchCore
+# models (224-256 px, 2048-4096 patches; 364-518 ms on one A72 core instead of 707-1142 ms).
+device:
+  name: pi4
+app:
+  target_fps: 2             # inspections per second while the LLM runs; one frame costs ~110-560 ms on one core
+  idle_target_fps: 5        # while the LLM is idle vision uses all 4 cores (YOLO 198 -> 96 ms, screw 547 -> 182 ms)
+vision:
+  num_threads: 1
+  boost_threads: 4
+  cpu_affinity: [0]
+advisor:
+  cpu_threads: 3
+  cpu_affinity: [1, 2, 3]
+  nice: 10
+  timeout_s: 240

@@ -1,0 +1,15 @@
+{
+  "image_threshold": 2.007786989212036,
+  "pixel_threshold": 1.5570766925811768,
+  "blur_sigma": 4.0,
+  "input_size": 256,
+  "coreset": 4096,
+  "feature_dim": 384,
+  "category": "bottle",
+  "image_auroc": 1.0,
+  "image_recall_at_threshold": 1.0,
+  "image_fpr_at_threshold": 0.0,
+  "pixel_auroc": 0.9818590438493892,
+  "calibrated_for": "feature_extractor.onnx",
+  "holdout_images": 20
+}

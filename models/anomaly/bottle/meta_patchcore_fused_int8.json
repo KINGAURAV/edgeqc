@@ -1,0 +1,17 @@
+{
+  "image_threshold": 2.0506515502929688,
+  "pixel_threshold": 1.5721327066421509,
+  "blur_sigma": 4.0,
+  "input_size": 256,
+  "coreset": 4096,
+  "feature_dim": 384,
+  "category": "bottle",
+  "image_auroc": 1.0,
+  "image_recall_at_threshold": 1.0,
+  "image_fpr_at_threshold": 0.0,
+  "pixel_auroc": 0.9818590438493892,
+  "calibrated_for": "patchcore_fused_int8.onnx",
+  "holdout_images": 20,
+  "image_threshold_smooth": 1.8744690120220184,
+  "smooth_holdout_images": 20
+}

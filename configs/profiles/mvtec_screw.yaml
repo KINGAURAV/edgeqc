@@ -1,0 +1,28 @@
+# MVTec AD 'screw': PatchCore-lite at 320 px (coreset 4096), INT8 fused model (normalisation + ResNet-18 + kNN in
+# one ONNX graph). Picked from the HPC sweep (scripts/hpc/sweep_anomaly.sbatch): screw defects are small, so the
+# extra resolution lifts recall@threshold from 39% to 68% (INT8) at 0% FPR, for ~28 ms instead of ~16 ms on the M2.
+# The previous 256 px model is still in models/anomaly/screw/. Thresholds re-calibrated for INT8 on the training
+# holdout by scripts/optimize_patchcore.py. input_size is read from the model's meta (320).
+app:
+  product: screw
+  source: samples/mvtec/screw
+vision:
+  anomaly:
+    method: patchcore
+    model_path: models/anomaly/screw_s320/patchcore_fused_int8.onnx
+    memory_bank: models/anomaly/screw_s320/memory_bank.npy
+    meta: models/anomaly/screw_s320/meta_patchcore_fused_int8.json
+    threshold_scale: 0.91   # smoothed image score; test: 95.0% recall / 4.9% false alarms (0.93: 89.9% / 4.9%)
+  classifier:
+    enabled: false
+severity:
+  area_frac: {major: 0.01, critical: 0.05}
+# Raspberry Pi 4 (--device configs/devices/pi4.yaml, vision on one core): smaller model for ~2 FPS.
+device_overrides:
+  pi4:
+    vision:
+      anomaly:
+        model_path: models/anomaly/pi4/screw/patchcore_fused_int8.onnx
+        memory_bank: models/anomaly/pi4/screw/memory_bank.npy
+        meta: models/anomaly/pi4/screw/meta_patchcore_fused_int8.json
+        threshold_scale: 0.87   # 288 px / 4096 patches / PCA-128; smoothed score; test 96.6% recall / 7.3% false alarms (0.90: 89.9% / 4.9%)

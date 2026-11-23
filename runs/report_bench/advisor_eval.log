@@ -1,0 +1,153 @@
+warm-up 36.6s
+[ 1]  20.9s ttft 10.7s gen 42 | 
+Cause: High residual stress leading to crazing.
+Action: Isolate the affected coil section and investigate the root cause of the crazing.
+Check: Check the cooling-water flow and temperature to ensure proper cooling.
+Log: REJECT - CRITICAL crazing at center, anomaly score 4.10.
+
+[ 2]  15.6s ttft  5.9s gen 40 | 
+Cause: High residual stress may be causing the crazing.
+Action: Isolate the affected coil section and verify the cooling process.
+Check: Check the cooling-water flow and temperature to ensure proper cooling.
+Log: REVIEW - MINOR crazing at bottom-left, anomaly score 1.40.
+
+[ 3]  26.0s ttft 11.2s gen 59 | 
+Cause: Possible slag entrapment during casting, leading to non-metallic inclusion particles.
+Action: Mark the affected area and cut it out, then inform the melt shop of the heat number.
+Check: Check the ladle for proper practice and inspect the tundish refractory for wear.
+Log: REJECT - MAJOR inclusion at top-center, anomaly score 2.90.
+
+[ 4]  18.1s ttft  5.9s gen 51 | grounded names_type
+Cause: Possible slag entrapment during casting, leading to non-metallic particles.
+Action: Mark the affected area and cut it off to prevent further damage.
+Check: Check the ladle for proper use and inform the melt shop of the heat number.
+Log: REVIEW - MINOR inclusion at bottom-right, anomaly score 1.20.
+
+[ 5]  27.3s ttft 11.2s gen 66 | grounded names_type
+Cause: Unusual patching on the steel strip surface, likely due to uneven pickling and oil residue.
+Action: Inspect the steel strip for any signs of patching, and verify the patch is not a normal manufacturing variation.
+Check: Check pickling bath concentration, roll coolant filters, and re-inspect after cleaning.
+Log: REJECT - MAJOR patches at middle-left, anomaly score 3.30.
+
+[ 6]  16.5s ttft  6.2s gen 41 | grounded names_type
+Cause: Possible uneven scale removal causing a patch on the surface.
+Action: Inspect the part for scale removal and re-inspect after cleaning.
+Check: Check pickling bath concentration and roll coolant filters.
+Log: REVIEW - MINOR patches at top-right, anomaly score 1.50.
+
+[ 7]  25.3s ttft 11.6s gen 55 | 
+Cause: Pitted surface is a sign of corrosion that occurred before rolling, which is a major defect.
+Action: Reject the steel strip immediately.
+Check: Check the rolled surface for any signs of corrosion or scale, and also inspect the storage area for any signs of moisture.
+Log: REJECT - MAJOR pitted_surface at center, anomaly score 3.00.
+
+[ 8]  19.1s ttft  6.5s gen 50 | 
+Cause: Pitted surface likely due to corrosion or scale buildup on the work roll.
+Action: Hold the part for metallurgical review and confirm the pitted surface visually.
+Check: Check the work roll surface for any signs of corrosion or scale buildup.
+Log: REVIEW - MINOR pitted_surface at bottom-left, anomaly score 1.30.
+
+[ 9]  27.8s ttft 12.9s gen 58 | cause_kb
+Cause: Likely oxide scale formation during the rolling process.
+Action: Inspect the rolled-in scale for any signs of excessive descaling or blockage of the descaling nozzles.
+Check: Check descaler header pressure, clean or replace nozzles, and verify furnace exit temperature.
+Log: REJECT - MAJOR rolled-in_scale at center, anomaly score 3.60.
+
+[10]  18.7s ttft  7.1s gen 44 | cause_kb
+Cause: Likely oxide scale pressing into the surface during rolling.
+Action: Inspect the roll surface for signs of oxide scale and verify the roll's operation.
+Check: Check descaler header pressure and verify furnace exit temperature.
+Log: REVIEW - MINOR rolled-in_scale at bottom-right, anomaly score 1.20.
+
+[11]  25.8s ttft 13.0s gen 50 | 
+Cause: Scratches are likely a result of foreign objects on the rolls or guides.
+Action: Inspect the rolls and guides for any signs of damage or misalignment.
+Check: Check line speed synchronisation to ensure that the rollers are properly aligned.
+Log: REJECT - MAJOR scratches at top-left, anomaly score 2.70.
+
+[12]  19.2s ttft  6.8s gen 48 | 
+Cause: Scratches are likely a result of foreign objects on the rolls or guides.
+Action: Inspect the rolls and guides for any signs of damage or misalignment.
+Check: Check line speed synchronisation to ensure it is properly aligned.
+Log: REJECT - CRITICAL scratches at center, anomaly score 4.40.
+
+[13]  26.8s ttft 12.0s gen 56 | cause_kb
+Cause: The crack is a discrete, potentially propagating crack that may cause the part to fail under load.
+Action: Reject the part immediately and stop the line if the crack is repeated.
+Check: Check the part for thermal stress, material fatigue, and forming beyond material limits.
+Log: REJECT - CRITICAL crack at center, anomaly score 5.20.
+
+[14]  22.7s ttft  6.8s gen 59 | cause_kb
+Cause: The crack is a discrete and potentially propagating crack that may cause the bottle to fail under load.
+Action: Reject the bottle immediately and stop the line if the crack is repeated.
+Check: Check the part for any signs of thermal stress, material fatigue, or forming beyond material limits.
+Log: REJECT - CRITICAL crack at top-center, anomaly score 3.80.
+
+[15]  28.9s ttft 13.3s gen 58 | names_type cause_kb
+Cause: Unclassified anomaly may indicate a possible crack or scratch.
+Action: Route the screw to manual inspection and capture a close-up image for further analysis.
+Check: Check the anomaly's severity and the part's location to ensure the anomaly is not a minor or low-severity anomaly.
+Log: REJECT - MAJOR anomaly_linear at middle-left, anomaly score 2.20.
+
+[16]  25.7s ttft 13.6s gen 46 | 
+Cause: Unclassified anomaly spot may indicate contamination or inclusion.
+Action: Wipe camera lens and part, re-inspect, and route to manual inspection if it persists.
+Check: Check anomaly spot for re-occurrence.
+Log: REVIEW - MINOR anomaly_spot at center, anomaly score 1.30.
+
+[17]  23.0s ttft 14.1s gen 35 | cause_kb
+Cause: Possible stain or patch in the anomaly area.
+Action: Verify lighting uniformity and re-inspect the anomaly area.
+Check: Check lighting uniformity and camera exposure.
+Log: REJECT - MAJOR anomaly_area at middle-left, anomaly score 2.60.
+
+[18]  35.0s ttft 23.4s gen 42 | names_type
+Cause: High levels of slag and refractory particles embedded in the surface.
+Action: Quarantine the coil section and inspect tundish refractory for inclusion.
+Check: Check for excessive rolling and reduction schedule.
+Log: REJECT - CRITICAL crazing at middle-left (+1 more), anomaly score 4.00.
+
+[19]  36.1s ttft 23.3s gen 45 | 
+Cause: Scratches on the rolling direction are likely due to foreign objects on the rolls or guides.
+Action: Inspect the rolls and guides for any foreign objects and misaligned guides.
+Check: Check line speed synchronisation.
+Log: REJECT - MAJOR scratches at bottom-center (+1 more), anomaly score 2.80.
+
+[20]  35.2s ttft 22.9s gen 44 | 
+Cause: Pitted surface is likely due to corrosion during the rolling process.
+Action: Hold the part for metallurgical review and confirm the pitted surface visually.
+Check: Check the pitted surface for any other anomalies.
+Log: REJECT - MAJOR pitted_surface at middle-left (+1 more), anomaly score 3.10.
+
+{
+ "rule": {
+  "format": 20,
+  "grounded": 20,
+  "names_type": 20,
+  "cause_kb": 20,
+  "action_kb": 20,
+  "no_foreign": 20,
+  "no_numbers": 20,
+  "verdict_ok": 20,
+  "n": 20
+ },
+ "warm_up_s": 36.62410578795243,
+ "llm": {
+  "format": 20,
+  "grounded": 17,
+  "names_type": 15,
+  "cause_kb": 14,
+  "action_kb": 20,
+  "no_foreign": 20,
+  "no_numbers": 20,
+  "verdict_ok": 20,
+  "n": 20,
+  "latency_median_s": 25.7,
+  "latency_max_s": 36.08,
+  "ttft_median_s": 11.556,
+  "ttft_min_s": 5.9,
+  "ttft_max_s": 23.35,
+  "gen_tokens_mean": 49.45,
+  "decode_tok_per_s": 3.79
+ }
+}
