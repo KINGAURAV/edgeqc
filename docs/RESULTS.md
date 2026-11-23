@@ -543,6 +543,18 @@ generations 9 → 3, boosted frames 344 → 638, 900 frames in 576 → 362 s.
 - `mvtec_roc_pi4.png`, `mvtec_roc_desktop.png` — image-score ROC per category with the app's operating point
   (AUROC Pi: bottle 1.000, metal_nut 0.993, tile 0.999, grid 0.954, screw 0.981).
 
+### Ablation of the hybrid (`scripts/ablation.py`, desktop models, 23 Nov; `runs/report_bench/ablation.json`)
+
+| Steel (NEU val, 361 images) | Caught | Correct type |
+|---|---|---|
+| Hybrid (deployed) | 99.4% | 98.3% |
+| Classifier only | 98.6% | 98.3% |
+| Classical anomaly only | 71.5% | 0% |
+
+MVTec, classical OpenCV detector instead of PatchCore (caught / good flagged): bottle 96.8 / 100%, metal_nut
+100 / 100%, tile 2.4 / 0%, grid 0 / 0%, screw 100 / 100% (PatchCore: see the table at the top). On NEU the anomaly
+stage adds 0.8 pt (the classifier knows all six classes); on MVTec a learned anomaly model is essential.
+
 ## 7. Open items
 Promised in `docs/PLAN.md` for the report and not done yet:
 - Advice quality rated by a person (section 6 has automatic checks + a model rating); grounding-check rejection rate

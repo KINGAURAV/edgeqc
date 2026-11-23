@@ -15,8 +15,9 @@ frame ─▶ [A] anomaly detector (PatchCore-lite | classical) ─┐
 ```
 
 The vision and advisory pipelines are **separate**: vision runs in ONNX Runtime on the Arm CPU, Llama runs through
-ExecuTorch (XNNPACK) on the Arm CPU. Design: [docs/PLAN.md](docs/PLAN.md). Measured results:
-[docs/RESULTS.md](docs/RESULTS.md).
+ExecuTorch (XNNPACK) on the Arm CPU. **Technical report: [docs/EdgeQC_Report.pdf](docs/EdgeQC_Report.pdf)** (source [docs/REPORT.md](docs/REPORT.md)).
+Design: [docs/PLAN.md](docs/PLAN.md). Measured results: [docs/RESULTS.md](docs/RESULTS.md). Demo: `scripts/demo.sh`
+([docs/DEMO.md](docs/DEMO.md)).
 
 Measured on the Raspberry Pi 4 (details and conditions in RESULTS.md section 5):
 
@@ -69,7 +70,7 @@ src/edgeqc/
 native/    llama_server.cpp: resident ExecuTorch Llama runner with prompt KV caches and token streaming
 scripts/   synthetic samples · dataset prep · training · INT8 export (optimize_patchcore, quantize_yolo) ·
            ExecuTorch setup · benchmark · LLM smoke test · hpc/ (Slurm jobs) · kaggle/ (GPU notebook job)
-tests/     26 unit/smoke tests (run without any trained models)
+tests/     28 unit/smoke tests (run without any trained models)
 docs/      PLAN.md · RESULTS.md · LITERATURE.md · EXECUTORCH_LLAMA.md · DATASETS.md · HPC.md · HAILO.md
 ```
 

@@ -1,0 +1,71 @@
+{
+ "steel": {
+  "hybrid (deployed)": {
+   "images": 361,
+   "caught": 0.994,
+   "typed_correctly": 0.983
+  },
+  "classifier only": {
+   "images": 361,
+   "caught": 0.986,
+   "typed_correctly": 0.983
+  },
+  "anomaly only (classical)": {
+   "images": 361,
+   "caught": 0.715,
+   "typed_correctly": 0.0
+  }
+ },
+ "mvtec": {
+  "bottle": {
+   "PatchCore (deployed)": {
+    "caught": 1.0,
+    "flagged_good": 0.0
+   },
+   "classical": {
+    "caught": 0.968,
+    "flagged_good": 1.0
+   }
+  },
+  "metal_nut": {
+   "PatchCore (deployed)": {
+    "caught": 0.989,
+    "flagged_good": 0.091
+   },
+   "classical": {
+    "caught": 1.0,
+    "flagged_good": 1.0
+   }
+  },
+  "tile": {
+   "PatchCore (deployed)": {
+    "caught": 1.0,
+    "flagged_good": 0.091
+   },
+   "classical": {
+    "caught": 0.024,
+    "flagged_good": 0.0
+   }
+  },
+  "grid": {
+   "PatchCore (deployed)": {
+    "caught": 0.807,
+    "flagged_good": 0.048
+   },
+   "classical": {
+    "caught": 0.0,
+    "flagged_good": 0.0
+   }
+  },
+  "screw": {
+   "PatchCore (deployed)": {
+    "caught": 0.95,
+    "flagged_good": 0.049
+   },
+   "classical": {
+    "caught": 1.0,
+    "flagged_good": 1.0
+   }
+  }
+ }
+}
