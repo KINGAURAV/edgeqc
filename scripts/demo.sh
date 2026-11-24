@@ -3,6 +3,7 @@
 #
 #   scripts/demo.sh steel            # NEU steel strip: 6 defect types, each comes back once (advice reuse is instant)
 #   scripts/demo.sh bottle           # MVTec bottle: good parts PASS, unseen defects flagged by anomaly detection
+#   scripts/demo.sh pcb              # VisA PCB boards: good boards PASS, missing / damaged components flagged
 #   scripts/demo.sh steel --fresh    # forget saved advice first, so the Llama visibly writes every first reply
 #   scripts/demo.sh steel --camera 0 # live USB camera instead of the image folder
 #   scripts/demo.sh steel --prepare  # before recording: the Llama writes advice for every demo defect once (~5 min
@@ -27,6 +28,7 @@ done
 case "$PRODUCT" in
   steel)  CFG=configs/profiles/steel.yaml ;;
   bottle|metal_nut|tile|grid|screw) CFG=configs/profiles/mvtec_$PRODUCT.yaml ;;
+  pcb)    CFG=configs/profiles/visa_pcb4.yaml ;;
   *) echo "unknown product: $PRODUCT"; exit 1 ;;
 esac
 [ -z "$SOURCE" ] && SOURCE="samples/demo/$PRODUCT"

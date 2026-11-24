@@ -7,7 +7,7 @@ baseline in the report when comparing it with the Llama advice.
 from __future__ import annotations
 
 from ..types import InspectionResult
-from .prompts import log_line
+from .prompts import kb_entry, log_line
 
 
 class RuleBasedAdvisor:
@@ -20,7 +20,7 @@ class RuleBasedAdvisor:
         if not result.defects:
             return "No defects detected. Part OK."
         worst = sorted(result.defects, key=lambda d: (-d.severity.rank, -d.area_frac))[0]
-        e = self.kb.get(worst.label, {})
+        e = kb_entry(self.kb, result.product, worst.label) or {}
         causes = e.get("causes") or ["unknown"]
         actions = e.get("actions") or ["route part to manual inspection"]
         return (f"Cause: {worst.label} ({worst.severity.value}), likely {causes[0]}.\n"

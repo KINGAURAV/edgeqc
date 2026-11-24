@@ -168,3 +168,15 @@ def test_log_entry_stored_separately(tmp_path, cfg):
     row = store.recent(1)[0]
     assert row["log_entry"].startswith("REJECT - MAJOR scratches at top-left")
     assert "Log:" not in row["advice"]
+
+
+def test_product_specific_kb_notes(cfg):
+    from edgeqc.advisor.prompts import kb_notes
+    from edgeqc.advisor.rule_based import RuleBasedAdvisor
+
+    kb = load_kb(cfg["advisor"]["knowledge_base"])
+    r = InspectionResult(1, time.time(), "pcb", Verdict.REJECT, 2.0,
+                         [Defect("anomaly_area", (1, 2, 30, 40), 0.0, 2.0, 0.1, "anomaly", Severity.MAJOR)])
+    assert "pick-and-place" in kb_notes(r, kb) and "pick-and-place" in RuleBasedAdvisor(kb).advise(r)
+    r.product = "bottle"  # no product entry -> generic note
+    assert "lighting" in kb_notes(r, kb)

@@ -25,6 +25,7 @@ Measured on the Raspberry Pi 4 (details and conditions in RESULTS.md section 5):
 |---|---|
 | Steel line (classical anomaly + YOLOv8n INT8) | 5 FPS while the Llama is idle, 2 FPS while it writes advice; correct defect type named for 97.5% of NEU-DET val images |
 | MVTec AD (PatchCore-lite INT8), 5 categories | 3.4 FPS (screw) to 4.4 FPS (bottle) while the Llama is idle; 1.7 FPS on bottle while it writes; 88-100% of defects caught at 0-10% false alarms |
+| PCB boards (VisA pcb4, PatchCore-lite INT8) | 95.0% of defective boards caught at 7.9% false alarms (F1 0.936); 159 ms per board on 4 cores |
 | Llama 3.2 1B advice | 23-30 s for a new defect type (42-68 s while vision is running), first words streamed after 6-11 s; instant for a defect type seen before (advice is cached per type and severity) |
 
 
@@ -75,5 +76,5 @@ docs/      PLAN.md · RESULTS.md · LITERATURE.md · EXECUTORCH_LLAMA.md · DATA
 ```
 
 ## Licences
-Code: MIT (TBD by team). MVTec AD is CC BY-NC-SA 4.0. Llama 3.2 is under the Llama 3.2 Community License.
+Code: MIT (TBD by team). MVTec AD is CC BY-NC-SA 4.0. VisA (Zou et al., *SPot-the-Difference*, ECCV 2022, Amazon) is CC BY 4.0; `samples/demo/pcb/` holds downscaled VisA pcb4 test images. Llama 3.2 is under the Llama 3.2 Community License.
 Ultralytics YOLO is AGPL-3.0.

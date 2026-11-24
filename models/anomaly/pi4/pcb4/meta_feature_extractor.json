@@ -1,0 +1,16 @@
+{
+  "image_threshold": 1.8138830661773682,
+  "image_threshold_smooth": 1.7360048294067383,
+  "pixel_threshold": 1.51963210105896,
+  "blur_sigma": 4.0,
+  "input_size": 256,
+  "coreset": 4096,
+  "feature_dim": 128,
+  "category": "pcb4",
+  "image_auroc": 0.979009900990099,
+  "image_recall_at_threshold": 0.86,
+  "image_fpr_at_threshold": 0.019801980198019802,
+  "pixel_auroc": 0.9812433576043778,
+  "calibrated_for": "feature_extractor.onnx",
+  "holdout_images": 90
+}

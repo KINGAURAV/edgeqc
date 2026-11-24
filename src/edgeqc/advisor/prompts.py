@@ -104,13 +104,18 @@ def summarize_findings(result: InspectionResult, max_defects: int = 4) -> str:
     return "\n".join(lines)
 
 
+def kb_entry(kb: dict, product: str, label: str) -> dict | None:
+    """Knowledge-base notes for a defect: a product-specific entry ("pcb/anomaly_spot") wins over the generic one."""
+    return kb.get(f"{product}/{label}") or kb.get(label)
+
+
 def kb_notes(result: InspectionResult, kb: dict) -> str:
     seen, notes = set(), []
     for d in result.defects:
-        if d.label in seen or d.label not in kb:
+        e = kb_entry(kb, result.product, d.label)
+        if d.label in seen or e is None:
             continue
         seen.add(d.label)
-        e = kb[d.label]
         notes.append(f"- {d.label}: {e.get('description', '')} Causes: {'; '.join(e.get('causes', []))}. "
                      f"Actions: {'; '.join(e.get('actions', []))}.")
     return "\n".join(notes) if notes else "- (no reference notes for these defect types)"

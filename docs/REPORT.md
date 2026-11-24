@@ -179,6 +179,11 @@ over 3 seeds) gave no gain beyond seed noise: seed alone moves mAP@0.5 by 2.8 po
 
 MVTec: a defective part flagged REVIEW/REJECT is a true positive, a good part flagged is a false positive.
 
+**PCB boards (VisA pcb4, added 25 Nov).** The same anomaly pipeline, trained on good boards only, on real populated
+PCBs with missing, bent, melted or scratched parts: AUROC 0.984 (INT8), **95.0% of defective boards caught at 7.9%
+false alarms; precision 0.922, recall 0.950, F1 0.936** (100 defective, 101 good test boards). 443 ms per board on
+one Pi 4 core, 159 ms on four. Of the four VisA PCB types, pcb4 was the only one above 0.91 AUROC at this model size.
+
 
 Using the smoothed-heatmap maximum as the image score, instead of the single largest patch distance, raised AUROC
 on grid (0.911 → 0.954) and screw (0.965 → 0.981) at no extra compute.

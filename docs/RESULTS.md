@@ -559,6 +559,25 @@ generations 9 → 3, boosted frames 344 → 638, 900 frames in 576 → 362 s.
 
 MVTec: a defective part flagged REVIEW/REJECT is a true positive, a good part flagged is a false positive.
 
+### PCB inspection: VisA pcb4 (25 Nov; `configs/profiles/visa_pcb4.yaml`, `scripts/prepare_visa.py`)
+
+VisA (Amazon Visual Anomaly, CC BY 4.0) has real populated boards with good and defective samples (missing, bent,
+melted or scratched parts). All four PCB types were trained with the Pi-size recipe (256 px, 4,096-patch bank,
+PCA-128, good boards only); pcb4 was clearly best and is deployed:
+
+| Board (FP32, raw score) | Image AUROC | Recall at ≤10% false alarms |
+|---|---|---|
+| pcb1 | 0.910 | 69% |
+| pcb2 | 0.905 | 84% |
+| pcb3 | 0.884 | 56% |
+| **pcb4** | **0.979** | **94%** |
+
+pcb4 INT8 fused model (5.2 MB): image AUROC 0.984. App verdicts on the full test set (100 defective, 101 good) with the
+smoothed score at scale 0.91: **95.0% caught, 7.9% of good boards flagged; precision 0.922, recall 0.950, F1 0.936**.
+Holdout-only threshold (scale 1.0): 83% / 2%. Pi 4: 443 ms per board on one core, 159 ms on four. Advice uses
+PCB-specific knowledge-base notes (`pcb/anomaly_*` in `configs/defect_kb.yaml`: missing or melted component,
+solder splash, scratched trace, bent lead). Demo: `scripts/demo.sh pcb`.
+
 ### Ablation of the hybrid (`scripts/ablation.py`, desktop models, 23 Nov; `runs/report_bench/ablation.json`)
 
 | Steel (NEU val, 361 images) | Caught | Correct type |

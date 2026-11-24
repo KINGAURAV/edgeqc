@@ -1,0 +1,16 @@
+# VisA 'pcb4' (Amazon Visual Anomaly dataset, CC BY 4.0): populated PCB boards. PatchCore-lite trained on good boards
+# only (256 px, 4,096-patch bank, PCA-128), INT8 fused. Data: scripts/prepare_visa.py. Same model on desktop and Pi 4.
+app:
+  product: pcb
+  source: samples/demo/pcb
+vision:
+  anomaly:
+    method: patchcore
+    model_path: models/anomaly/pi4/pcb4/patchcore_fused_int8.onnx
+    memory_bank: models/anomaly/pi4/pcb4/memory_bank.npy
+    meta: models/anomaly/pi4/pcb4/meta_patchcore_fused_int8.json
+    threshold_scale: 0.91   # smoothed score; test 95% recall / 7.9% false alarms (1.0 = holdout only: 83% / 2%)
+  classifier:
+    enabled: false
+severity:
+  area_frac: {major: 0.01, critical: 0.05}

@@ -41,3 +41,17 @@ anomaly_area:
   description: Unclassified large anomalous region (possible stain, patch or lighting issue).
   causes: [unknown; check lighting uniformity first]
   actions: [verify illumination and camera exposure, re-inspect, escalate if confirmed on part]
+
+# Product-specific notes ("<product>/<label>") override the generic entry above for that product.
+pcb/anomaly_spot:
+  description: Small local anomaly on the board (possible solder splash, debris, a scratched trace or a damaged small component).
+  causes: [solder paste misprint or splatter, contamination during handling, damage from handling or depaneling]
+  actions: [re-inspect the spot under magnification, clean the board and re-inspect, check the solder paste printer and handling fixtures]
+pcb/anomaly_area:
+  description: Large anomaly on the board (possible missing, misplaced or melted component).
+  causes: [pick-and-place error or empty feeder, component lost before reflow, reflow profile too hot]
+  actions: [hold the board for rework, check the pick-and-place feeder and placement program, verify the reflow oven profile]
+pcb/anomaly_linear:
+  description: Elongated anomaly on the board (possible scratch across traces, cracked trace or bent lead).
+  causes: [handling or depaneling stress, bent leads during insertion, tool contact]
+  actions: [test the affected traces for continuity, inspect leads and straighten or replace the part, check depaneling and handling fixtures]
