@@ -165,6 +165,21 @@ over 3 seeds) gave no gain beyond seed noise: seed alone moves mAP@0.5 by 2.8 po
 
 ![MVTec image-score ROC with the app's operating point](figures/mvtec_roc_pi4.png)
 
+**Precision / recall / F1** (the metrics the PS5 mentor asked for; app verdicts, Pi models):
+
+| | Precision | Recall | F1 |
+|---|---|---|---|
+| Steel, defect type named (NEU val, macro over 6 classes) | 0.997 | 0.983 | **0.990** |
+| Steel, YOLOv8n INT8 box level (IoU 0.5, Ultralytics val) | 0.664 | 0.664 | 0.664 |
+| MVTec bottle | 1.000 | 1.000 | **1.000** |
+| MVTec metal_nut | 0.979 | 0.989 | **0.984** |
+| MVTec tile | 0.966 | 1.000 | **0.982** |
+| MVTec grid | 0.962 | 0.877 | **0.917** |
+| MVTec screw | 0.975 | 0.966 | **0.970** |
+
+MVTec: a defective part flagged REVIEW/REJECT is a true positive, a good part flagged is a false positive.
+
+
 Using the smoothed-heatmap maximum as the image score, instead of the single largest patch distance, raised AUROC
 on grid (0.911 → 0.954) and screw (0.965 → 0.981) at no extra compute.
 
