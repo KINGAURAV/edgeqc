@@ -30,6 +30,7 @@
   .muted { color:var(--muted); font-size:12px; }
   button { background:var(--accent); color:#081018; border:0; border-radius:6px; padding:8px 12px; font-weight:600; cursor:pointer; }
   button:disabled { opacity:.4; cursor:default; }
+  button.done, button.done:disabled { opacity:1; background:#2e7d32; color:#fff; }
   .tablewrap { overflow-x:auto; }
   table { width:100%; border-collapse:collapse; font-size:12px; }
   th, td { text-align:left; padding:6px 4px; border-bottom:1px solid var(--line); white-space:nowrap; }
@@ -82,6 +83,7 @@
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let alertId = null;
+const acked = new Set();  // alerts acknowledged from this page
 
 async function poll() {
   try {
@@ -105,7 +107,9 @@ async function poll() {
       $("a-engine").textContent = !a.advice_engine ? ""
         : a.advice_partial ? `${a.advice_engine} · writing… ${a.advice_latency_s}s`
         : `by ${a.advice_engine} in ${a.advice_latency_s}s`;
-      $("ack").disabled = false;
+      const done = acked.has(a.inspection_id);
+      $("ack").disabled = done; $("ack").classList.toggle("done", done);
+      $("ack").textContent = done ? `✓ Acknowledged #${a.inspection_id}` : `Acknowledge #${a.inspection_id}`;
     }
   } catch (e) { /* server restarting */ }
 }
@@ -123,8 +127,10 @@ async function pollRecent() {
 
 $("ack").onclick = async () => {
   if (alertId == null) return;
-  await fetch(`/api/ack/${alertId}`, {method: "POST"});
-  $("ack").disabled = true; pollRecent();
+  const id = alertId;
+  const r = await fetch(`/api/ack/${id}`, {method: "POST"});
+  if (r.ok) { acked.add(id); $("ack").disabled = true; $("ack").classList.add("done"); $("ack").textContent = `✓ Acknowledged #${id}`; }
+  pollRecent();
 };
 
 setInterval(poll, 700); setInterval(pollRecent, 2500); poll(); pollRecent();

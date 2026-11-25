@@ -1,8 +1,8 @@
 ---
 title: "EdgeQC: On-Device Industrial Defect Detection and QC Assistant on an Arm CPU"
 subtitle: "Arm Bharat AI-SoC Challenge 2026-27 · Problem Statement 5 · Phase 1 technical report"
-author: "[Team name / Team ID] · [Member names] · BITS Pilani, K K Birla Goa Campus"
-date: "23 November 2026"
+author: "Team I Give Up · BITS Pilani, K K Birla Goa Campus"
+date: "25 November 2026"
 ---
 
 ## Summary
@@ -283,12 +283,11 @@ line this cut wasted Llama time by two-thirds and raised mean throughput from 1.
 - **Live camera.** The measurements use image-folder "virtual conveyors". The latest-frame camera grabber is
   implemented but was not benchmarked here.
 - **Thermals.** Without a fan the Pi throttles. Performance numbers are pessimistic.
-- **Hailo backend** is implemented but untested (no AI HAT+, which needs a Pi 5).
+- **Hailo backend** (optional NPU path) is implemented but untested: we have no NPU hardware.
 
 ## 8. Future work
 
-Run on a Raspberry Pi 5 (Cortex-A76 with dot-product: roughly 2-3x faster Llama with the same code) and on the AI
-HAT+ (vision on HailoRT, all four cores for Llama). Collect defect-free steel images and a larger good-part set to
+Collect defect-free steel images and a larger good-part set to
 calibrate thresholds without test labels. Try STFPM for grid. Fine-tune the 1B model (LoRA) on knowledge-base
 derived advice. Let the operator ask follow-up questions and get shift summaries from the log. Feed operator
 overrides back as training data.
