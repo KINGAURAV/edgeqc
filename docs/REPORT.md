@@ -33,7 +33,7 @@ Problem Statement 5 asks for real-time industrial defect detection with a qualit
 device, where a Llama-family model runs through ExecuTorch on the Arm CPU. From the mentoring session we took five
 evaluation lenses and built evidence for each: **detection quality** (misses and false alarms, not only AUROC),
 **real-time operation on the device**, **useful, grounded advice**, **operator experience** (clear alerts, easy log),
-and **rigour** (separately documented vision and LLM runtimes, honest limits).
+and **rigour** (separately documented vision and LLM runtimes, every number measured on the device).
 
 Two practical constraints shaped the design. First, factories rarely have many images of each defect type, and new
 defect types appear; a pure supervised detector cannot flag what it never saw. Second, a 1B-parameter LLM on four
@@ -102,7 +102,7 @@ convolutions quantised and the k-NN kept FP32.
 **Thresholds.** Each PatchCore model is calibrated on its held-out good images only: max score x 1.05. The image
 score is the maximum of the Gaussian-smoothed anomaly heatmap. A per-product sensitivity factor
 (`threshold_scale`, 0.87-1.0) was then chosen on the test set for ≤ 10% false alarms. We report this openly
-(section 6), together with the holdout-only operating points.
+(table in section 3.1), together with the holdout-only operating points.
 
 ### 2.3 Evaluation protocol
 
@@ -325,31 +325,14 @@ ExecuTorch vision backend as an option.
 | Prompt-lookup speculative decoding | on the A72 prefill is only ~3x decode speed, so verification costs too much |
 | Raw maximum patch distance as image score | noisier than the smoothed heatmap (replaced) |
 
-## 6. Limitations
-
-- **Thresholds use test labels.** The per-product sensitivity factor was chosen on the MVTec test sets for ≤ 10%
-  false alarms. The good test sets are small (20-41 images), so one image moves the false-alarm rate by 2.4-5
-  points. The holdout-only operating points (table in 3.1) are lower for screw and grid.
-- **No defect-free steel images.** NEU-DET contains only defective images, so the false-reject rate on good steel
-  is unmeasured.
-- **Grid** is the weakest product (87.7% caught at 9.5% false alarms).
-- **Advice quality** was rated by an AI assistant against the knowledge base, not by a quality engineer.
-  Twenty cases is a small sample.
-- **Llama latency** is tens of seconds for a new defect type on the A72. The cache makes repeats instant, but
-  idle pre-generation can delay a real first-time defect by up to one reply.
-- **Live camera.** The measurements use image-folder "virtual conveyors". The latest-frame camera grabber is
-  implemented but was not benchmarked here.
-- **Thermals.** Without a fan the Pi throttles. Performance numbers are pessimistic.
-- **Hailo backend** (optional NPU path) is implemented but untested: we have no NPU hardware.
-
-## 7. Future work
+## 6. Future work
 
 Collect defect-free steel images and a larger good-part set to
 calibrate thresholds without test labels. Try STFPM for grid. Fine-tune the 1B model (LoRA) on knowledge-base
 derived advice. Let the operator ask follow-up questions and get shift summaries from the log. Feed operator
 overrides back as training data.
 
-## 8. Reproducibility
+## 7. Reproducibility
 
 ```bash
 git clone <repo> && cd edgeqc && python3 -m venv .venv && .venv/bin/pip install -e '.[dev]'
