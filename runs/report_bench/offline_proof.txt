@@ -1,0 +1,26 @@
+$ date; hostname
+Wed Nov 25 18:19:59 IST 2026
+edgepi
+$ ip -brief addr          # network interfaces visible to EdgeQC
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+$ ping -c1 -W2 8.8.8.8
+ping: connect: Network is unreachable
+$ curl -m3 https://huggingface.co
+curl: (6) Could not resolve host: huggingface.co
+$ python -m edgeqc.app --config configs/profiles/steel.yaml --device configs/devices/pi4.yaml --headless --max-frames 45
+18:20:01 INFO edgeqc.vision.pipeline: Classifier: YOLO (OnnxBackend), 6 classes
+18:20:13 INFO edgeqc.advisor.executorch_llama: llama_server resident (model load 11965 ms)
+18:20:47 INFO edgeqc: Done: {'total': 45, 'PASS': 0, 'REVIEW': 0, 'REJECT': 45, 'yield': 0.0, 'advisor': {'generated': 0, 'reused': 0, 'joined': 7, 'dropped': 33, 'pregenerated': 0}, 'boosted_frames': 0}
+===
+$ ip -brief addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+$ ping -c1 -W2 8.8.8.8
+ping: connect: Network is unreachable
+$ python scripts/prepare_demo_advice.py --config configs/profiles/steel.yaml   # fresh cache: Llama must write every reply
+00_scratches_244.jpg: llama-executorch-resident 90s | Cause: Scratches on the steel strip surface are likely caused by a foreign object on the rolls or guides.
+01_inclusion_247.jpg: llama-executorch-resident 41s | Cause: Possible inclusion of non-metallic particles, which could be slag or refractory, causing the anomaly.
+02_patches_241.jpg: llama-executorch-resident 38s | Cause: Patches are likely caused by uneven pickling and oil or emulsion residue.
+03_crazing_241.jpg: llama-executorch-resident 31s | Cause: High residual stress causing crazing.
+04_pitted_surface_242.jpg: llama-executorch-resident 40s | Cause: Pitted surface is likely a result of corrosion during the rolling process.
+05_rolled-in_scale_241.jpg: llama-executorch-resident 38s | Cause: Rolled-in scale likely caused by insufficient descaling pressure.
+Advice ready for 6 defect signatures.
